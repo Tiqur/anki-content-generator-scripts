@@ -42,7 +42,3 @@ def generate_front():
 
 def generate_back():
     return factored_poly
-
-
-print(f"Polynomial: {poly}")
-print(f"Factored Polynomial: {factored_poly}")
