@@ -33,12 +33,9 @@ def is_perfect_square(n):
     return n == math.isqrt(n) ** 2
 
 
-poly, factored_poly = generate_polynomial()
+def generate_card():
+    poly, factored_poly = generate_polynomial()
+    front = f"Factor: {poly}"
+    back = factored_poly
+    return front, back
 
-
-def generate_front():
-    return f"Factor: {poly}"
-
-
-def generate_back():
-    return factored_poly
