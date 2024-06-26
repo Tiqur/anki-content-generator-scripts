@@ -3,34 +3,24 @@ import math
 
 
 def generate_polynomial():
+    a, b, c, gcf = None, None, None, None
+
     # Choose a random GCF greater than 1
-    gcf = random.randint(2, 16)
+    gcf = random.randint(2, 8)
 
     # Generate coefficients that are multiples of the GCF
-    a = gcf * random.randint(1, 10)
-    b = gcf * random.randint(1, 10)
-    c = gcf * random.randint(1, 10)
+    a = random.randint(1, 10) * gcf
+    b = random.randint(1, 10) * gcf
+    c = random.randint(1, 10) * gcf
 
-    # Ensure the trinomial is prime (cannot be factored further over integers)
-    discriminant = b**2 - 4*a*c
-    while discriminant >= 0 and is_perfect_square(discriminant):
-        a = gcf * random.randint(1, 10)
-        b = gcf * random.randint(1, 10)
-        c = gcf * random.randint(1, 10)
-        discriminant = b**2 - 4*a*c
+    # Get greatest common divisor ( gcf variable not guaranteed to be GCD )
+    gcd = math.gcd(a, math.gcd(b, c))
 
     # Construct the polynomial and its factored form
     polynomial = f"{a}x^2 + {b}x + {c}"
-    a_gcf = a // gcf
-    b_gcf = b // gcf
-    c_gcf = c // gcf
-    factored_polynomial = f"{gcf}({a_gcf}x^2 + {b_gcf}x + {c_gcf})"
+    factored_polynomial = f"{gcd}({a//gcd}x^2 + {b//gcd}x + {c//gcd})"
 
     return polynomial, factored_polynomial
-
-
-def is_perfect_square(n):
-    return n == math.isqrt(n) ** 2
 
 
 def generate_card():
@@ -38,4 +28,3 @@ def generate_card():
     front = f"Factor: {poly}"
     back = factored_poly
     return front, back
-
